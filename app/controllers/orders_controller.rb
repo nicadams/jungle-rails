@@ -52,9 +52,12 @@ class OrdersController < ApplicationController
         )
       end
     end
+    OrderMailer.receipt_email(order).deliver_now
     order.save!
     order
   end
+
+
 
   # returns total in cents not dollars (stripe uses cents as well)
   def cart_total
