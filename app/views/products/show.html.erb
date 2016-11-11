@@ -24,8 +24,19 @@
           <dd><%= @product.price %></dd>
         </dl>
       </div>
-    </div>
 
+    <div class="col-sm-8">
+      <dl class="dl-vertical">
+
+
+    <strong>All reviews for this product:</strong>
+<% @product.reviews.each do |review| %>
+  <p>
+    <strong>#<%= review.id %></strong>:
+    <%= review.description %>
+  </p>
+  <% end %>
+  </dl>
   </article>
 
 </section>

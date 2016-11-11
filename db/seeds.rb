@@ -130,7 +130,7 @@ product12 = cat3.products.create!({
 })
 
 #Users
-user1 = User.create! ({
+user1 = User.create!({
   first_name: 'Nic',
   last_name: 'Adams',
   email: 'nic.adams@hotmail.com',
