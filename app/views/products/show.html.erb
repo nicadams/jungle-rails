@@ -25,45 +25,47 @@
         </dl>
       </div>
 
-    <div class="col-sm-8">
-      <dl class="dl-vertical">
-        <dt>Reviews</dt><br>
-        <% if current_user %>
-          <%= form_for([@product, @review]) do |f| %>
-            <%= f.hidden_field :user_id, :value => current_user.id %>
-            <p>
-              <%= f.label :rating %><br>
-              <%= f.select :rating, [['1','1'],['2','2'],['3','3'], ['4','4'], ['5','5'] ] %>
-            </p>
-            <p>
-              <%= f.label :description %><br>
-              <%= f.text_area :description %>
-            </p>
-            <p>
-              <%= f.submit %>
-            </p>
+      <div class="col-sm-8">
+        <dl class="dl-vertical">
+          <% if current_user %>
+          <dt>Tell us what you think:</dt><br>
+            <%= form_for([@product, @review]) do |f| %>
+              <%= f.hidden_field :user_id, :value => current_user.id %>
+              <p>
+                <%= f.label :rating %><br>
+                <%= f.select :rating, [['1','1'],['2','2'],['3','3'], ['4','4'], ['5','5'] ] %> &#9733;
+              </p>
+              <p>
+                <%= f.label :description %><br>
+                <%= f.text_area :description %>
+              </p>
+              <p>
+                <%= f.submit :class => 'btn btn-default' %>
+              </p>
+            <% end %>
           <% end %>
-        <% end %>
-        <br>
+          <br>
 
-        <strong>All reviews for this product:</strong>
-        <% @product.reviews.order('updated_at DESC').each do |review| %>
-          <p>
-            <strong>#<%= review.id %></strong>:
-            <%= review.description %>
-          </p>
-          <% if review.user == current_user %>
-            <%= link_to fa_icon('trash'),
-                    [@product, review],
-                    class: 'btn btn-sm btn-danger',
-                    method: :delete,
-                    data: { confirm: "Are you sure?" } %>
-          <% end %>
-        <% end %>
+          <strong>All reviews for this product:</strong>
+          <% @product.reviews.order('updated_at DESC').each do |review| %>
+            <br>
 
-      </dl>
-  </div>
-  </div>
+            <div id="product_review">
+              <%= review.rating %> &#9733;<br><br>
+              <strong>#<%= review.id %></strong>:
+              <%= review.description %>.<br>
+            </div>
+            <div id="del_button"> <% if review.user == current_user %>
+              <%= link_to fa_icon('trash'),
+                      [@product, review],
+                      class: 'btn btn-sm btn-danger',
+                      method: :delete,
+                      data: { confirm: "Are you sure?" } %>
+            <% end %>
+            </div>
+        <% end %>
+        </dl>
+      </div>
+    </div>
   </article>
-
 </section>
