@@ -23,6 +23,7 @@
         <% @order.line_items.each do |item| %>
           <%= render 'order', product_id: item.product.id, quantity: item.quantity %>
         <% end %>
+
       </tbody>
       <tfoot>
         <tr>

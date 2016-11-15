@@ -2,23 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Product, type: :model do
   describe 'Validations' do
-    # validation tests/examples here
 
-
-    it "must require a name, price, quantity, category" do
-      @category = Category.create!
-      @product = Product.create!(
-        name: 'blah',
-        price: 3,
-        quantity: 1,
-        category: @category
-      )
-      expect(@product.name).to be_present
-      expect(@product.price).to be_present
-      expect(@product.quantity).to be_present
-      expect(@product.category).to be_present
-    end
-
+    #the 4 failing tests
     it "Product name can't be blank" do
       @category = Category.create!
       @product = Product.create!(
@@ -67,6 +52,19 @@ RSpec.describe Product, type: :model do
 
     end
 
+    it "Product must require a name, price, quantity, category" do
+      @category = Category.create!
+      @product = Product.create!(
+        name: 'blah',
+        price: 3,
+        quantity: 1,
+        category: @category
+      )
+      expect(@product.name).to be_present
+      expect(@product.price).to be_present
+      expect(@product.quantity).to be_present
+      expect(@product.category).to be_present
+    end
 
   end
 end
